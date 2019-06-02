@@ -1,0 +1,7 @@
+
+limit:
+  minMoney: 1
+  maxMoney: 9999
+  info: 红包的钱最少为${limit.minMoney},最多为${limit.maxMoney}
+yu:
+  name: yusan

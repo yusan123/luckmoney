@@ -1,0 +1,17 @@
+spring:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123
+      url: jdbc:mysql://localhost:3306/luckmoney
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+
+limit:
+  minMoney: 0.01
+  maxMoney: 0.01
+  info: 红包的钱最少为${limit.minMoney},最多为${limit.maxMoney}
+yu:
+  name: test
