@@ -1,6 +1,8 @@
 package com.yu.controller;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.yu.entity.Luckmoney;
+import com.yu.service.ILuckmoneyService;
 import com.yu.service.impl.LuckmoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,7 @@ import java.util.List;
 @RestController
 public class LuckmoneyController {
     @Autowired
-    private LuckmoneyService luckmoneyService;
+    private ILuckmoneyService luckmoneyService;
 
     @GetMapping("/all")
     public List<Luckmoney> findAll(){
@@ -26,11 +28,17 @@ public class LuckmoneyController {
     }
 
     @PostMapping("/add")
-    public Luckmoney addLuckmoney(@RequestBody Luckmoney luckmoney){
+    public Object addLuckmoney(@RequestBody Luckmoney luckmoney){
         return luckmoneyService.insert(luckmoney);
     }
+    @PutMapping("/update/{id}/{name}")
     public Luckmoney updateLuckmoney(@PathVariable("id") Integer id,
                                      @PathVariable("name") String name){
         return luckmoneyService.update(id,name);
+    }
+
+    @PostMapping("/batch")
+    public List<Luckmoney> batchSend(@RequestBody List<Luckmoney> list){
+        return luckmoneyService.batchSend(list);
     }
 }

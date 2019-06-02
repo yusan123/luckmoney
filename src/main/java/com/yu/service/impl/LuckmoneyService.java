@@ -3,9 +3,11 @@ package com.yu.service.impl;
 import com.yu.entity.Luckmoney;
 import com.yu.repository.LuckmoneyRepository;
 import com.yu.service.ILuckmoneyService;
+import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -36,6 +38,18 @@ public class LuckmoneyService implements ILuckmoneyService {
     public Luckmoney update(Integer id,String name) {
         Luckmoney luckmoney = findById(id);
         luckmoney.setConsumer(name);
-        return luckmoney;
+        return luckmoneyRepository.save(luckmoney);
+    }
+
+    @Override
+    @Transactional
+    public List<Luckmoney> batchSend(List<Luckmoney> list) {
+        list.forEach(luckmoney -> {
+            if (luckmoney.getMoney().intValue()>10){
+                System.out.println(1/0);
+            }
+            luckmoneyRepository.save(luckmoney);
+        });
+        return list;
     }
 }

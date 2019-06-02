@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -13,7 +14,7 @@ import java.math.BigDecimal;
  */
 @Data
 @Entity
-public class Luckmoney {
+public class Luckmoney implements Serializable{
 
     @Id
     @GeneratedValue

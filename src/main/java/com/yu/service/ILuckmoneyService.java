@@ -16,4 +16,7 @@ public interface ILuckmoneyService {
     Luckmoney insert(Luckmoney luckmoney);
     //更新红包，领取红包，设置领取人
     Luckmoney update(Integer id,String name);
+
+    //事务测试，一次存入多个红包
+    List<Luckmoney> batchSend(List<Luckmoney> list);
 }
